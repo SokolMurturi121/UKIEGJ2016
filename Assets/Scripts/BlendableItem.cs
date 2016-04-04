@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
-public class Bounce : MonoBehaviour
+public class BlendableItem : MonoBehaviour
 {
     public Material darkMaterial;
     public Material lightMaterial;
     public float duration = 2.0f;
-
     public Renderer rend;
 
     // Use this for initialization
@@ -19,10 +19,7 @@ public class Bounce : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    float sinDelta = Mathf.Sin(Time.time);
-        float lerp = Mathf.PingPong(Time.time, duration) / duration;
-
-        transform.position = new Vector3(0, sinDelta + 2,0);
+	    float lerp = Time.deltaTime/duration;
         rend.material.Lerp(darkMaterial, lightMaterial, lerp);
-	}
+    }
 }
